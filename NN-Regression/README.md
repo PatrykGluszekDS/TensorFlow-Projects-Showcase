@@ -23,10 +23,10 @@ This project aims to predict vehicle fuel efficiency (measured in miles per gall
 - Jupyter Notebook
   
 ## 🚩 Methodology
-1. **Data Acquisition and Exploration**
+1. **Data Acquisition and Exploration** [x]
     - Data loading, checking for missing values, visual exploration.
   
-2. **Data Preprocessing**
+2. **Data Preprocessing** [x]
     - Handling missing values, encoding categorical features, scaling data.
 
 3. **Model Development**
