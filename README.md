@@ -29,7 +29,3 @@ Repository showcases diverse portfolio of machine learning projects, each design
 
 ## 📌 How to use this repository:
 - **Navigate** to each project folder to explore code, detailed descriptions, results, and visualizations.
-
-```bash
-git clone https://github.com/YourGitHubUsername/TensorFlow-Projects-Showcase.git
-cd TensorFlow-Projects-Showcase
