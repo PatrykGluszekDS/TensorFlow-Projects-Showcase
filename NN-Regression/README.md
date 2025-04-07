@@ -29,7 +29,7 @@ This project aims to predict vehicle fuel efficiency (measured in miles per gall
 2. **Data Preprocessing** [x]
     - Handling missing values, encoding categorical features, scaling data.
 
-3. **Model Development**
+3. **Model Development** [x]
     - Building and training a Neural Network Regression model.
 
 4. **Evaluation & Tuning**
@@ -42,10 +42,10 @@ This project aims to predict vehicle fuel efficiency (measured in miles per gall
 ## 📊 Results
 *(Will be updated after project completion.)*
 
-| Metric | Result |
+| Metric | Result (Initial model) |
 |--------|--------|
-| Mean Absolute Error (MAE) | TBD |
-| Mean Squared Error (MSE) | TBD |
+| Mean Absolute Error (MAE) | 1.677 |
+| Mean Squared Error (MSE) | 5.146 |
 | Root Mean Squared Error (RMSE) | TBD |
 | R² Score | TBD |
 
