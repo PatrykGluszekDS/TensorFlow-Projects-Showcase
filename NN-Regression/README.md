@@ -44,10 +44,10 @@ This project aims to predict vehicle fuel efficiency (measured in miles per gall
 
 | Metric | Result (Initial model) |
 |--------|--------|
-| Mean Absolute Error (MAE) | 1.677 |
-| Mean Squared Error (MSE) | 5.146 |
-| Root Mean Squared Error (RMSE) | TBD |
-| R² Score | TBD |
+| Mean Absolute Error (MAE) | 1.795 |
+| Mean Squared Error (MSE) | 5.720 |
+| Root Mean Squared Error (RMSE) | 2.392 |
+| R² Score | 0.894 |
 
 ### Visualizations
 *(Visualizations will be included after completion)*
