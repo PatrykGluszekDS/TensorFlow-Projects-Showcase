@@ -8,8 +8,8 @@ Repository showcases diverse portfolio of machine learning projects, each design
 
 | Project                               | Description                                             |     Status      |
 |---------------------------------------|--------------------------------------------------|------------------------|
-| [Vehicle Fuel Efficiency Prediction](NN-Regression/)       | Predictive modeling using regression techniques.        | 🔄 In Progress |
-| [NN Classification](NN-Classification/) | Classification using fully connected neural networks. | 🕒 Upcoming    |
+| [Vehicle Fuel Efficiency Prediction](NN-Regression/)       | Predictive modeling using regression techniques.        | ✅ Completed |
+| [NN Classification](NN-Classification/) | Classification using fully connected neural networks. | 🔄 In Progress    |
 | [CNN](CNN/)                           | Image recognition using convolutional neural networks.  | 🕒 Upcoming    |
 | [Transfer Learning](Transfer-Learning/) | Leveraging pre-trained models for specialized tasks.  | 🕒 Upcoming    |
 | [NLP](NLP/)                           | Natural Language Processing with TensorFlow.            | 🕒 Upcoming    |
