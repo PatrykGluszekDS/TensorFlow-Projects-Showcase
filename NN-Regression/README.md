@@ -37,7 +37,7 @@ This project aims to predict vehicle fuel efficiency (measured in miles per gall
     - Performance metrics: MAE, MSE, RMSE, R².
     - Hyperparameter tuning: Layers, neurons, activation functions.
 
-5. **Visualization & Interpretation**
+5. **Visualization & Interpretation** [x]
     - Actual vs. predicted MPG plots, error analysis.
 
 ## 🧠 Models Developed
@@ -94,3 +94,27 @@ This project aims to predict vehicle fuel efficiency (measured in miles per gall
 
 ---
 
+## 📚 Comparison with Scientific Literature
+
+This project replicates and improves on the work published in the following paper:
+
+> **"Artificial Neural Network Model for Prediction of Fuel Consumption of a Car"**  
+> *International Journal of Artificial Intelligence and Scientific Research, 2020*  
+> [Read paper (PDF)](https://ijaist.com/vol10/issue1/IJAISR201102.pdf)
+
+| Feature                     | My Project                                 | IJAISR Paper (2020)                    |
+|----------------------------|--------------------------------------------|----------------------------------------|
+| **Dataset**                | UCI Auto MPG                                | UCI Auto MPG                           |
+| **Framework**              | TensorFlow/Keras (Python)                  | JustNN GUI Tool                        |
+| **Architecture**           | Tested multiple: 1H-32, 2H-64-32            | Fixed: 2H, 3 total neurons             |
+| **Training Epochs**        | Tuned manually: 10–100                      | 7683 epochs                            |
+| **Metrics Used**           | MAE, RMSE, MSE, R²                          | Classification Accuracy (not ideal)   |
+| **Best R²**                | **0.91**                                    | Not reported                           |
+| **Hyperparameter Tuning**  | Manual tuning in code                      | Trial and error via GUI                |
+| **Reproducibility**        | Full code & notebooks available            | No code provided                       |
+
+### 🧠 Insight
+
+This project not only reproduced the paper's experiment using modern frameworks but also demonstrated **better results**, **clearer methodology**, and **stronger metrics** — all with **fewer training epochs**.
+
+---
