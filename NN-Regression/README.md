@@ -100,7 +100,7 @@ This project replicates and improves on the work published in the following pape
 
 > **"Artificial Neural Network Model for Prediction of Fuel Consumption of a Car"**  
 > *International Journal of Artificial Intelligence and Scientific Research, 2020*  
-> [Read paper (PDF)]([https://ijaist.com/vol10/issue1/IJAISR201102.pdf](http://ijeais.org/wp-content/uploads/2020/11/IJAISR201102.pdf))
+> [Read paper (PDF)]([https://ijaist.com/vol10/issue1/IJAISR201102.pdf](http://ijeais.org/wp-content/uploads/2020/11/IJAISR201102.pdf])
 
 | Feature                     | My Project                                 | IJAISR Paper (2020)                    |
 |----------------------------|--------------------------------------------|----------------------------------------|
