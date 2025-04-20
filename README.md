@@ -21,6 +21,7 @@ Repository showcases diverse portfolio of machine learning projects, each design
 - TensorFlow
 - Python
 - Keras API
+- Scikit-learn
 - NumPy & Pandas
 - Matplotlib & Seaborn
 - Jupyter Notebook
