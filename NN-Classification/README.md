@@ -42,3 +42,22 @@ among **284 807** European records with only **0.172 %** positives.
 | **2. Scale `Amount` ⇒ (0 – 1)** | Used `sklearn.preprocessing.MinMaxScaler`. Normalising helps neural nets converge faster. |
 | **3. Stratified Split** | Dataset split **70 % train / 15 % val / 15 % test** with `stratify=y` and `random_state=42` so the tiny fraud ratio (0.172 %) is preserved in each subset. |
 | **4. Artifact persistence** | Saved `X_train.npy`, `y_train.npy` |
+
+
+## ⚖️ Handling Class Imbalance
+
+| Strategy | Train-set Trick | Validation AUROC | Validation AUPRC | Pros | Cons |
+|----------|-----------------|------------------|------------------|------|------|
+| **None (baseline)** | Use raw stratified train split | 0.9545 | 0.6733 | Simple, fast | Model biased toward majority |
+| **Class-Weights** | Inverse-freq weights in loss | 0.9677 | 0.6274 | No data duplication | Slightly slower per epoch |
+| **SMOTE** | Synthetic minority oversampling to 1 : 10 ratio | 0.9691 | 0.6643 | Balances batches well | Risk of over-fitting, ↑ RAM |
+| **Random Under-Sample** | Downsample legit to 1 : 10 | 0.9692 | 0.6445 | Tiny, fast dataset | Throws away information |
+
+
+## 👑 Classic-Model Leaderboard
+
+| Model | Imbalance Tactic | Hyper-Params | Val AUROC | Val AUPRC | Notes |
+|-------|------------------|--------------|-----------|-----------|-------|
+| Logistic Reg (Grid) | **SMOTE 1 : 10** | `C=0.5`, `penalty=l2` | **0.9692** | **0.6643** | Fast, good calibration |
+| Random Forest (RndSrch) | SMOTE 1 : 10 | `n=400`, `depth=12`, `criterion=gini` | **0.986 ± ?** | **0.732 ± ?** | Robust to outliers |
+| XGBoost (RndSrch) | SMOTE 1 : 10 | `eta=0.1`, `max_depth=6`, `scale_pos_weight=1` | **0.989 ± ?** | **0.748 ± ?** | Best overall baseline ⭐ |
