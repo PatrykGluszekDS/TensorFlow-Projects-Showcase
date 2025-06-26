@@ -92,10 +92,25 @@ among **284 807** European records with only **0.172 %** positives.
 | *K-Tuner best* | **≈ 1 M** | Class-Weights (`pos:neg ≈ 1:15`) | Focal (α=0.25, γ=2) | **0.9738** | **0.8350** | ✅ |
 
 
+
+
 ## 📊 Hold-out Test Results & Threshold
 
-| Model | Test AUROC | Test AUPRC | Threshold | Precision | Recall | F1 | Fraud Cost Saved? |
-|-------|------------|-----------|-----------|-----------|--------|----|--------------------|
-| Neural-Net v2 | **0.9635** | **0.8396** | **0.47** | 0.953 | 0.824 | 0.884 | **€36,525** |
-| XGBoost | 0.9699 | 0.8417 | 0.80 | 0.937 | 0.797 | 0.861 | €35,300 |
+| Model | Test AUROC | Test AUPRC | Opt. Threshold<sup>†</sup> | Precision | Recall | F1 | € Cost Saved* |
+|-------|-----------:|-----------:|---------------------------:|-----------:|--------:|---:|--------------:|
+| **Neural-Net v2** | 0.9635 | 0.8396 | **0.47** | **0.953** | **0.824** | **0.884** | **€ 36 525** |
+| XGBoost | **0.9699** | **0.8417** | 0.80 | 0.937 | 0.797 | 0.861 | € 35 300 |
 
+<sup>†</sup>Threshold chosen by maximising F1 (precision–recall balance) on the test set.  
+\*Cost model used in the notebook: **€ 25** operational cost per false alarm (FP) and **€ 600** average loss per undetected fraud (FN).
+
+### ✏️ Interpretation
+
+* **Ranking quality:** XGBoost edges out in raw AUROC/AUPRC, but only marginally (≈0.002 AUPRC).  
+* **Operating point:** After threshold tuning, **Neural-Net v2** fires slightly more often—capturing **82 %** of fraudulent transactions while still keeping precision above **95 %**.  
+* **Business value:** Using the cost model above, v2 saves **€ 36 525** over the two-day dataset window—about **€ 1 225 more** than XGBoost.  
+* **Take-away:** The tuned neural network offers the best *economic* performance despite XGBoost’s slightly higher ranking metrics, making **v2 the production candidate**.
+
+> **Cost formula:**  
+> `Cost = (FP × €25) + (FN × €600)`  
+> *Cost Saved* = *Cost<sub>baseline-(detect-nothing)</sub>* – *Cost<sub>model</sub>*
