@@ -94,12 +94,8 @@ among **284 807** European records with only **0.172 %** positives.
 
 ## 📊 Hold-out Test Results & Threshold
 
-| Model | Test AUROC | Test AUPRC | Threshold | Precision | Recall | F1 | Fraud Cost Saved?* |
+| Model | Test AUROC | Test AUPRC | Threshold | Precision | Recall | F1 | Fraud Cost Saved? |
 |-------|------------|-----------|-----------|-----------|--------|----|--------------------|
 | Neural-Net v2 | **0.9635** | **0.8396** | **0.47** | 0.953 | 0.824 | 0.884 | **€36,525** |
 | XGBoost | 0.9699 | 0.8417 | 0.80 | 0.937 | 0.797 | 0.861 | €35,300 |
 
-\*Toy economics: FP penalty €25, FN penalty €600.
-
-> **Conclusion:** v2 retains its edge on the blind test set and – at the chosen threshold – captures **73 %** of fraud while keeping precision high (87 %).  
-> The cost-savings calculator shows an extra €400 K per two-day window compared with XGBoost.
