@@ -73,3 +73,28 @@ model.compile(
 ```
 
 <p align="center"> <img src="model_1_curves.png" width="550" alt="Training curves (no augmentation)"> </p>
+
+Take-aways 🔎  
+
+1. The tiny CNN already breaks the 70 % barrier, proving the classes are visually separable  
+2. Validation/Test trails Train by ≈ 9 % → classic under-fit scenario; deeper nets or augmentation should close the gap.  
+3. Baseline serves as a yard-stick—any later model must beat 78 % test accuracy to justify added complexity.
+
+## 🧪 Experiment 2 — Same tiny CNN **with real-time data augmentation**
+
+### Augmentation policy
+```python
+train_aug = ImageDataGenerator(
+    rescale=1/255.,
+    rotation_range=0.2,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True
+)
+train_data_aug = train_aug.flow_from_directory(
+    TRAIN_DIR, target_size=(150, 150), batch_size=32, class_mode="categorical"
+)
+```
+
+<p align="center"> <img src="model_2_curves.png" width="550" alt="Training curves with augmentation"> </p>
