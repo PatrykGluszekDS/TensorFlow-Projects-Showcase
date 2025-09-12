@@ -11,8 +11,8 @@ Repository showcases diverse portfolio of machine learning projects, each design
 | [Vehicle Fuel Efficiency Prediction](NN-Regression/)       | Predictive modeling using regression techniques.        | ✅ Completed |
 | [Credit Card Fraud Detection](NN-Classification/) | Classification using fully connected neural networks. | ✅ Completed    |
 | [Intel Natural Scene Classification](CNN/)                           | Image recognition using convolutional neural networks.  | ✅ Completed    |
-| [Transfer Learning](Transfer-Learning/) | Leveraging pre-trained models for specialized tasks.  | 🔄 In Progress    |
-| [NLP](NLP/)                           | Natural Language Processing with TensorFlow.            | 🕒 Upcoming    |
+| [Transfer Learning](Transfer-Learning/) | Leveraging pre-trained models for specialized tasks.  |  ✅ Completed  |
+| [NLP](NLP/)                           | Natural Language Processing with TensorFlow.            | 🔄 In Progress    |
 | [Time Series](Time-Series/)           | Time series prediction and forecasting analysis.        | 🕒 Upcoming    |
 
 ---
