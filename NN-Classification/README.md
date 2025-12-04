@@ -20,7 +20,7 @@ among **284 807** European records with only **0.172 %** positives.
 |----------|---------|
 | **How unbalanced is the target?** | Fraud accounts for **0.172 %** of 284 807 records. |
 | **Do legitimate & fraudulent transactions differ in € Amount?** | Fraudsters slightly prefer mid-range amounts but overlap is large → Amount alone can’t separate classes |
-| **Correlation structure?** | Off-diagonal cells for V1-V28 are ~0 (grey). That’s expected—these are PCA components designed to be linearly uncorrelated. Amount shows weak pos/neg links with a few components (e.g. V7, V20) |
+| **Correlation structure?** | Off-diagonal cells for V1-V28 are ~0 (grey). That’s expected - these are PCA components designed to be linearly uncorrelated. Amount shows weak pos/neg links with a few components (e.g. V7, V20) |
 | **Any time-based drift?** | Plot suggests that frauds could occur in bursts and could be coordinated attacks. |
 
 <details>
