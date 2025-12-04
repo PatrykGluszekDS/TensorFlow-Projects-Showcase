@@ -26,7 +26,6 @@
 All three splits are piped through the same lightweight preprocessing function before entering the model:
 
 ```python
-@tf.function
 def preprocess_img(image, label, img_shape=224):
     """Resizes and casts the PlantVillage image to float32."""
     image = tf.image.resize(image, [img_shape, img_shape])          # 256×256 → 224×224
