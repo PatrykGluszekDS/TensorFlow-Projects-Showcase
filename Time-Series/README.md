@@ -21,7 +21,7 @@ The main goals are:
 * **Granularity used here:** **Daily** total rental counts.
 * **Target variable:** `cnt` – total number of bikes rented on a given **day**.
 
-In the first version of the project, I focus on a **univariate time series**:
+In the first version of the project, there is focus on a **univariate time series**:
 
 > `y_t = total number of rentals on day t`
 
@@ -61,7 +61,7 @@ Before using deep learning, simple baselines are implemented for reference:
   * Label: demand on the next day.
 * Using `tf.data.Dataset` pipelines for efficient batching and shuffling.
 
-### 4. TensorFlow Models & Planned Experiments
+### 4. TensorFlow Models & Experiments
 
 Several neural network architectures are trained and compared.
 
@@ -93,31 +93,31 @@ Several neural network architectures are trained and compared.
 
 4. **Conv1D model**
 
-   * 1D convolution over the input window (e.g. 30 days) to capture local temporal patterns.
+   * 1D convolution over the input window to capture local temporal patterns.
 
 5. **LSTM model**
 
-   * Recurrent neural network treating the 7- or 30-day windows as sequences.
+   * Recurrent neural network treating day windows as sequences.
 
 6. **Dense model with multivariate inputs**
 
-   * Same idea as model 1 but augmented with weather features.
+   * Same idea as model 1 but augmented with temperature feature.
 
 #### 4.4 Advanced & Ensemble Approaches
 
-7. **N-BEATS-style model** (advanced experiment, if time allows).
+7. **N-BEATS-style model**
 
 8. **Ensemble model**
 
-   * Combine predictions from several strong individual models (e.g. Dense + LSTM + Conv1D).
+   * Combine predictions from several models.
 
-9. **Future prediction model / deployment-ready model**
+9. **Future prediction model**
 
-   * A final, best-performing model prepared for generating forecasts beyond the dataset (e.g. next 7/30 days) and potentially for deployment.
+   * A final model prepared for generating forecasts beyond the dataset (e.g. next 7/30 days) and potentially for deployment.
 
 All models are trained with:
 
-* **Loss:** MAE or MSE.
+* **Loss:** MAE.
 * **Optimizer:** Adam.
 
 ### 5. Evaluation & Interpretation
@@ -129,47 +129,7 @@ The focus is not only on minimizing error but also on **explaining** what the mo
 
 ---
 
-## ✅ Current Progress
-
-* ✅ Loaded the **daily bike sharing data** from `day.csv` using a parsed datetime index (`dteday`).
-* ✅ Aggregated to a univariate series `daily_total_rentals` and inspected the first values.
-* ✅ Verified the dataset contains **731 daily observations** from 2011-01-01 to 2012-12-31 with no missing dates.
-* ✅ Created an initial **time series line plot** of daily total rentals, showing clear yearly seasonality and overall growth in demand.
-* ✅ Split the series into **chronological train/test sets** (80% / 20%):
-
-  * Train: first 584 days.
-  * Test: remaining 147 days.
-* ✅ Visualized the split using a scatter plot of train vs. test points over time to confirm there is no leakage.
-* ✅ Implemented a reusable helper function `plot_time_series(...)` to create consistent time series plots throughout the project.
-* ✅ Implemented an `evaluate_preds(...)` utility that computes **MAE, MSE, RMSE, MAPE and MASE** (with MASE scaled by a non-seasonal naive benchmark).
-* ✅ Trained and evaluated **Model 0 – Naïve baseline (horizon = 1)** on the test set.
-* ✅ Implemented several neural baselines for **horizon = 1** (one-day-ahead forecast):
-
-  * **Model 1 – Dense (window = 7)**.
-  * **Model 2 – Dense (window = 30)**.
-  * **Model 4 – Conv1D (window = 7)** using a 1D convolution over the last 7 days.
-* ✅ Implemented **NumPy-based windowing utilities** (`make_windows`, `get_labelled_windows`, `make_train_test_splits`) to create supervised learning samples for different window sizes.
-* ✅ For **Model 1 – Dense NN (window = 7, horizon = 1)**:
-
-  * Created 724 windows of shape `(7,)` with labels `(1,)`, split into **579 train windows** and **145 test windows**.
-  * Architecture: Dense(128, ReLU) → Dense(1, linear).
-  * Trained with Adam on MAE loss, using a model checkpoint callback.
-  * Evaluated and plotted predictions vs. test data.
-* ✅ For **Model 2 – Dense NN (window = 30, horizon = 1)**:
-
-  * Created 701 windows of shape `(30,)` with labels `(1,)`, split into **560 train windows** and **141 test windows**.
-  * Architecture: Dense(128, ReLU) → Dense(1, linear) (same as Model 1, but with a longer input history).
-  * Trained with Adam on MAE loss, again using a checkpoint callback.
-  * Generated forecasts on the test windows, evaluated them with `evaluate_preds(...)`, and visualized predictions vs. test data.
-
-Next immediate steps:
-
-* Implement additional architectures (e.g. **Conv1D** and **LSTM** models) and compare against the Dense baselines.
-* Further refine **multi-step forecasting** and compare different strategies (direct vs. recursive forecasts).
-
----
-
-## 📊 Metrics & Results
+## Metrics & Results
 
 ### Results (Horizon = 1, Daily Forecast)
 
@@ -218,31 +178,13 @@ Model 3 extends the task to **multi-step forecasting**, predicting the next 7 da
 * **Behaviour:** The 7-day forecasts are smooth and follow the general trend but struggle with sharp local variations, especially further into the forecast horizon.
 * **Next directions:** This motivates trying more sequence-aware architectures such as **Conv1D** or **LSTM/GRU** networks, and potentially incorporating calendar/weather covariates for richer multi-step models.
 
-As more models are trained (LSTM, ensembles, etc.), additional rows will be added to these tables along with short commentary on their relative performance.
-
-Model 3 extends the task to **multi-step forecasting**, predicting the next 7 days of demand from the previous 30 days. Metrics are averaged across all forecast horizons.
-
-| Model                               | MAE (rentals) | RMSE (rentals) | MAPE (%) | MASE  |
-| ----------------------------------- | ------------- | -------------- | -------- | ----- |
-| Dense NN (window = 30, horizon = 7) | ~1036         | ~1577          | ~259     | ~1.16 |
-
-* **Difficulty of multi-step forecasting:** As expected, predicting an entire week ahead is harder than predicting just the next day. The multi-step Dense model has larger errors and **MASE > 1**, meaning that, on average, it does not outperform a simple non-seasonal naive benchmark.
-* **Behaviour:** The 7-day forecasts are smooth and follow the general trend but struggle with sharp local variations, especially further into the forecast horizon.
-* **Next directions:** This motivates trying more sequence-aware architectures such as **Conv1D** or **LSTM/GRU** networks, and potentially incorporating calendar/weather covariates for richer multi-step models.
-
-As more models are trained (Conv1D, LSTM, ensembles, etc.), additional rows will be added to these tables along with short commentary on their relative performance.
-
 ---
 
-## 🔮 Roadmap / Possible Extensions
+## Possible Extensions
 
 Planned or potential future improvements:
 
-* 🔁 **Multi-step forecasting** (predict demand for the next 7 or 14 days).
-* 🎛️ Incorporate **calendar features** (weekday, weekend/weekday, holidays).
-* 🌦️ Add **weather and season** variables for a multivariate model.
-* 🔍 Hyperparameter tuning (e.g. with KerasTuner or Optuna).
-* 📈 Try more advanced architectures (e.g. Temporal Convolutional Networks, N-BEATS-style models).
-* 🧪 Model deployment demo (simple API or Streamlit dashboard for prediction).
+*  Hyperparameter tuning (e.g. with KerasTuner or Optuna).
+*  Model deployment demo (simple API or Streamlit dashboard for prediction).
 
 ---
